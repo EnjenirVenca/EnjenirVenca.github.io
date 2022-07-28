@@ -198,7 +198,7 @@ WITH regional_sales AS (
 	top_regions AS (
 		SELECT region
     	FROM regional_sales
-    	WHERE total_sales > (SELECT SUM(total_sales)/10 FROM 					regional_sales)
+    	WHERE total_sales > (SELECT SUM(total_sales)/10 FROM regional_sales)
 )
 SELECT region,
 	   product,
