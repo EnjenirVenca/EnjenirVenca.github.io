@@ -3,6 +3,7 @@ layout: page
 title: SQL
 permalink: docs/programovani/
 parent: Programování/Software
+toc: true
 ---
 
 # SQL (PostgreSQL)

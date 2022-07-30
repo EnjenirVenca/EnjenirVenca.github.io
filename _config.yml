@@ -30,9 +30,11 @@ github_username:  EnjenirVenca
 logo: "/assets/images/logo.png"
 
 # Build settings
+#theme: just-the-docs
 remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-feed
+  - jekyll-toc
 
 # Enable or disable the site search
 # Supports true (default) or false
