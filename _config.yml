@@ -27,9 +27,10 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  EnjenirVenca
 
 # Set a path/url to a logo that will be displayed instead of the title
-logo: "/assets/img/logo.png"
+logo: "/assets/images/logo.png"
 
 # Build settings
+theme: "just-the-docs"
 remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-feed

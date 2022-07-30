@@ -1,29 +1,28 @@
 ---
 layout: page
-title: Programování
-permalink: /programovani/
+title: SQL
+permalink: docs/programovani/
+parent: Programování/Software
 ---
 
-# Programování
+# SQL (PostgreSQL)
 
-## SQL (PostgreSQL)
-
-### Co je vlastně SQL?
+## Co je vlastně SQL?
 
 - jazyk, který slouží k psaní strukturovaných dotazů (structured query language) = ke komunikaci s databází
 
-### Co je MySQL?
+## Co je MySQL?
 
 - jeden z prvních open-source databázových systémů
 - udržuje data strukturovaná v databázích a existuje několik dalších systémů pro spravování databází (PostgreSQL, Oracle, Microsoft SQL Server a další)
 - každá z těchto databází pracuje s určitou verzí jazyka SQL, syntax zůstává stejná, ale mění se funkce a možnosti taky na základě toho jaký je to druh databáze (čistě relační nebo i objektově orientovaná)
 - každý z databázových systémů ukládá data trochu jinak
 
-### SQL operace - pořadí provedení
+## SQL operace - pořadí provedení
 
 - SELECT, FROM, JOIN, (ON), WHERE, GROUP BY, HAVING, ORDER BY, LIMIT
 
-### SELECT
+## SELECT
 
 - většinou se skládá z jednoduchých SELECT a FROM zakončený středníkem
 - potom se dá ale ještě konkretizovat klauzolema jako:
@@ -43,7 +42,7 @@ FROM
 	sales
 ```
 
-### ORDER BY
+## ORDER BY
 
 ```sql
 SELECT
@@ -56,7 +55,7 @@ ORDER BY column1 ASC,
 
 - když použiju 2 a více "pravidel", tak se to nejdřív seřadí podle prvního sloupečku a pak těch dalších...
 
-### SELECT DISTINCT
+## SELECT DISTINCT
 
 - když za distinct použiji jen jeden sloupeček, tak query podle toho sloupečku vyřadí duplikáty
 
@@ -64,7 +63,7 @@ ORDER BY column1 ASC,
 
 - slouží k výběru bez opakování duplikátů
 
-### LIMIT a OFFSET
+## LIMIT a OFFSET
 
 | employee_id | first_name | last_name |
 | ----------- | ---------- | --------- |
@@ -96,16 +95,16 @@ LIMIT 5 OFFSET 3;
 | 109         | Daniel     | Faviet    |
 | 105         | David      | Austin    |
 
-### FETCH
+## FETCH
 
 - používá se, když chci přeskočit N řádků odkud pak query začne
 
-### WHERE
+## WHERE
 
 - slouží k filtraci výběru ze SELECTu
 - definuji, že hledám něco KDE (WHERE), je splněna nějaká mnou definovaná podmínka
 
-#### Porovnávací operátory
+### Porovnávací operátory
 
 | operator | meaning               |
 | -------- | --------------------- |
@@ -118,7 +117,7 @@ LIMIT 5 OFFSET 3;
 
 - pomocí operátorů můžu specifikovat co má SELECT vybrat
 
-#### Logické operátory
+### Logické operátory
 
 | operator | meaning                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -136,7 +135,7 @@ LIMIT 5 OFFSET 3;
 
 - SOME = ANY
 
-### CASE
+## CASE
 
 - slouží k vytvoření kondicionálu
 - přidávám WHEN, THEN, END 
@@ -161,7 +160,7 @@ FROM
 ORDER BY first_name;
 ```
 
-### ALIAS (AS)
+## ALIAS (AS)
 
 - umožňuje dát alias tabulce nebo sloupečku
 
@@ -184,7 +183,7 @@ FROM
 	deparments AS d
 ```
 
-### WITH
+## WITH
 
 - s WITH jsem schopný vytvářet "temporary tabulky" neboli CTE (common table expression), které pak můžu v query dále používat
 
@@ -211,12 +210,12 @@ GROUP BY region, product;
 
 - tzn. když mám WITH regional_sales AS, tak jsem si vytvořil "temporary tabulky" s názvem regional_sales a to zatím AS ji definuje (nefunguje v tomto případě jako alias)
 
-### LEAD
+## LEAD
 
 - is used to access a row that follows the current row, at a specific physical offset and is generally used for comparing the value of the current row with the value of the next row following the current row (většinou within the partition?!)
 - slouží k porovnávání řádku s jiným řádkem (většinou s tím co je pod námi vybraným)
 
-### PARTITION BY
+## PARTITION BY
 
 - divides rows into partitions, by default, it takes the query result as a single partition (partition je malá část nějaké větší databáze)
 
@@ -224,7 +223,7 @@ GROUP BY region, product;
 
 - vlastně když udělám *„SUM(delta) OVER (PARTITION BY inventory_id, goods_id) AS delta_total“* tak to jede nejdřív podle inventory a pak podle goods
 
-### OVER
+## OVER
 
 - used to determine which rows from the query are applied to the function, what order they are evaluated in by that function, and when the function’s calculations should restart
 
@@ -257,9 +256,9 @@ FROM
   - the **ORDER BY** clause sorts rows in each product group by years in ascending order
   - the **LEAD()** function returns the sales of the next year from the current year for each product group
 
-### JOIN
+## JOIN
 
-<img src="assets/img/join.png"/>
+<img src="sql/assets/images/join.png"/>
 
 - INNER JOIN = JOIN
 - SELF JOIN je normální JOIN, jen se spojuje ta tabulka sama se sebou
@@ -289,9 +288,9 @@ JOIN table2
   - v podstatě to spojí řádky, které mají stejné ID a jsou tam právě jednou
   - jako INNER JOIN, ale nemusím specifikovat, dle jakého id se mají napojit
 
-  <img src="assets/img/natural_join.png"/>
+  <img src="sql/assets/images/natural_join.png"/>
 
-### Agregační funkce - AVG, COUNT, MAX, MIN, SUM
+## Agregační funkce - AVG, COUNT, MAX, MIN, SUM
 
 - agregační funkce:
   - **AVG()** - returns the average of a set
@@ -310,7 +309,7 @@ FROM
 	products;
 ```
 
-### GROUP BY
+## GROUP BY
 
 - ke spojení více řádků dohromady
 - pokud více řádků obsahuje NULL, tak jsou spojeny k sobě, jelikož GROUP BY je vidí jako stejné hodnoty
@@ -329,7 +328,7 @@ GROUP BY manager_id
 HAVING direct_reports >= 5;
 ```
 
-### HAVING
+## HAVING
 
 - slouží k filtrování skupin z GROUP BY nebo jako WHERE u agregačních funkcí
 - zatímco WHERE slouží k filtrování jednotlivých řádků tabulky
@@ -338,7 +337,7 @@ HAVING direct_reports >= 5;
 
 - tomu moc nerozumím, ale asi to v podstatě spojuje několik GROUP BY dohromady bez toho, aniž by se musel používat UNION ALL, protože tomu je pak v kódu lépe rozumět a nevytíží to tolik databázový systém
 
-### ROLLUP
+## ROLLUP
 
 - v podstatě nástavba GROUP BY
 - umožňuje přidat "subtotals" řádky (řádek "celkem")
@@ -423,7 +422,7 @@ GROUP BY ROLLUP
 | San Jose       | 650           |
 | All warehouses | 1210          |
 
-### COALESCE
+## COALESCE
 
 - můžeme použít například k substituci NULL hodnot, ale má i další použití
 - funkce, která vrací první ne NULL honotu
@@ -434,7 +433,7 @@ SELECT COALESCE(NULL, 1, 2, 'Ahoj');
 
 - tato query by vrátila hodnotu **1**
 
-### CUBE
+## CUBE
 
 - podobně jako ROLLUP je CUBE nadstavba funkce GROUP BY, umožňuje vytvořit řádek „celkem“ ale i pro „subsekce“ a hezčí než s ROLLUP
 
@@ -490,26 +489,26 @@ ORDER BY
 | San Jose          | Samsung         | 350           |
 | San Jose          | iPhone          | 300           |
 
-### UNION & UNION ALL
+## UNION & UNION ALL
 
 - UNION slouží ke spojení více SELECT query v jednu
 - pro zanechání duplikátů se používá UNION ALL viz. obrázek
 
-<img src="assets/img/union.png"/>
+<img src="sql/sql/assets/images/union.png"/>
 
 - rozdílem od JOIN, je že JOIN spojuje sloupečky, zatímco UNION spojuje řádky
 
-### INTERSECT
+## INTERSECT
 
 - slouží k zobrazení „jen“ shodných hodnot ze SELECT query viz. obrázek
 
-<img src="assets/img/intersect.png"/>
+<img src="sql/assets/images/intersect.png"/>
 
-### MINUS
+## MINUS
 
 - slouží k "odečtení" jedné sady výsledků od druhé
 
-<img src="assets/img/minus.png"/>
+<img src="sql/assets/images/minus.png"/>
 
 ```sql
 SELECT 
@@ -525,7 +524,7 @@ FROM
     dependents;
 ```
 
-### Subquery
+## Subquery
 
 - Subquery je v podstatě query, která je „schovaná“ v další query např. SELECT, INSERT, UPDATE nebo DELETE
 - např. chci zjistit všechny zaměstnance s location_id = 1700
@@ -588,9 +587,9 @@ ORDER BY first_name, last_name;
 
 - dají se použít i s porovnávacím operátorem (=, >, < atd.) nebo EXISTS, NOT EXISTS, ALL a ANY (SOME)
 
-### Corelated subquery
+## Corelated subquery
 
-#### EXISTS
+### EXISTS
 
 - slouží k vyběru, kdy v subquery určíme podmínku (např. i z jiné tabulky) a pak vybíráme řádky, které tuto podmínku splňují
 
@@ -608,7 +607,7 @@ WHERE
             dependents.employee_id = employees.employee_id);
 ```
 
-#### NOT EXISTS
+### NOT EXISTS
 
 - analogický protějšek k EXISTS
 
@@ -626,7 +625,7 @@ WHERE
             dependents.employee_id = employees.employee_id);
 ```
 
-### Recursive query
+## Recursive query
 
 - the WITH RECURSIVE clause allows a query to refer to its own output
 
@@ -746,7 +745,7 @@ FROM
 |          19 |          8 | Nathan Ferguson
 |          20 |          8 | Kevin Rampling
 
-### ALL
+## ALL
 
 - logický operátor, který „vrací“ jednu hodnotu se setem jednoho sloupečku hodnot, které „vrací“ subquery
 
@@ -780,7 +779,7 @@ ORDER BY salary;
 
 - u ALL bude ta podmínka splněna jen v případě, že všechny hodnoty v setu jí splňují
 
-### ANY (SOME)
+## ANY (SOME)
 
 - stejné jako ALL, ale stačí, pokud jakákoliv hodnota v setu splňuje námi danou podmínku
 
@@ -818,7 +817,7 @@ ORDER BY
     salary;   
 ```
 
-### INSERT
+## INSERT
 
 - slouží k vkládání jednotlivých dat do tabulek
 
@@ -875,7 +874,7 @@ VALUES
 	);
 ```
 
-### UPDATE
+## UPDATE
 
 - slouží k "aktualizaci" existujících dat v tabulce
 
@@ -924,7 +923,7 @@ SET last_name = (
 );
 ```
 
-### DELETE
+## DELETE
 
 - slouží k mazání tabulek tak i jednotlivých dat nebo položek z tabulek
 
@@ -939,7 +938,7 @@ WHERE
     employee_id IN (100 , 101, 102);
 ```
 
-### CREATE TABLE
+## CREATE TABLE
 
 - slouží k vytvoření tabulky v databázi
 
@@ -954,7 +953,7 @@ CREATE TABLE table_name(
 
 - existují různé druhy data (data_type)
 
-<img src="assets/img/data_types.png"/>
+<img src="sql/assets/images/data_types.png"/>
 
 ```sql
 CREATE TABLE trainings (
@@ -969,7 +968,7 @@ CREATE TABLE trainings (
 
 https://tableplus.com/blog/2018/06/postgresql-data-types.html
 
-### ALTER TABLE
+## ALTER TABLE
 
 - slouží k úpravě existující tabulky, např. k přidání nebo přejmenování sloupečku atd.
 
@@ -990,7 +989,7 @@ DROP colum_name,
 ...
 ```
 
-### DROP TABLE
+## DROP TABLE
 
 - slouží k odstranění tabulky z databáze
 
@@ -1002,7 +1001,7 @@ DROP TABLE [IF EXISTS] table_name;
 DROP TABLE table_name1,table_name2,...;
 ```
 
-### TRUNCATE TABLE
+## TRUNCATE TABLE
 
 - slouží k odstranění všech dat z tabulky, ale nesmaže tabulku
 
@@ -1016,7 +1015,7 @@ TRUNCATE table_name;
 
 
 
-#### TRUNCATE vs. DELETE vs. DROP
+### TRUNCATE vs. DELETE vs. DROP
 
 - **DELETE** statement removes rows one at a time and records an entry in the transaction log for each deleted row
 - **TRUNCATE TABLE** removes the data by deallocating the data pages used to store the table data and records only the page deallocations in the transaction log
@@ -1042,7 +1041,7 @@ https://www.postgresqltutorial.com/postgresql-not-null-constraint/
 
 https://www.postgresqltutorial.com/postgresql-check-constraint/
 
-### STRING_AGG
+## STRING_AGG
 
 - agregátní funkce, která „spojuje“ seznam stringů a dává mezi ně nějaký separator (oddělovač) 
 
@@ -1052,7 +1051,7 @@ https://www.postgresqltutorial.com/postgresql-check-constraint/
 STRING_AGG(expression, separator [ORDER BY ...])
 ```
 
-### LIKE vs. ILIKE
+## LIKE vs. ILIKE
 
 - slouží k hledání ve stringu, podobné jako (LIKE), procento % nahrazuje jakýkoliv znak
 
@@ -1078,7 +1077,7 @@ WHERE
 	first_name ILIKE 'BAR%';
 ```
 
-### IN
+## IN
 
 - operator in WHERE clause to check if a value matches any value in a list of values (analogicky funkce **NOT IN**)
 
@@ -1094,7 +1093,7 @@ ORDER BY
 	   return_date DESC;
 ```
 
-### DATE
+## DATE
 
 - CURRENT_DATE
 
@@ -1133,7 +1132,7 @@ FROM
 WHERE date BETWEEN CURRENT_DATE AND CURRENT_DATE - INTERVAL '7 days'
 ```
 
-### AGE
+## AGE
 
 ```sql
 SELECT
@@ -1153,7 +1152,7 @@ FROM
 (3 rows)
 ```
 
-### EXTRACT
+## EXTRACT
 
 - to get year, month, day as columns
 
@@ -1176,7 +1175,7 @@ FROM
 (3 rows)
 ```
 
-### CONCAT_WS
+## CONCAT_WS
 
 - adds two or more expressions together with a separator
 
@@ -1192,11 +1191,11 @@ https://www.sqlshack.com/overview-of-sql-rank-functions/
 
 https://count.co/sql-resources/bigquery-standard-sql/unnest
 
-### LOWER
+## LOWER
 
 - is used to convert a string from upper case to lower case
 
-### TABLE vs. VIEW vs. MATERIALIZED VIEW
+## TABLE vs. VIEW vs. MATERIALIZED VIEW
 
 - **Table** is where data is stored. You always start with tables first, and then your usage pattern dictates whether you need views or materialized views.
 
