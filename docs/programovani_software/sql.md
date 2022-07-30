@@ -259,7 +259,7 @@ FROM
 
 ## JOIN
 
-<img src="sql/assets/images/join.png"/>
+<img src="programovani_software/sql/assets/images/join.png"/>
 
 - INNER JOIN = JOIN
 - SELF JOIN je normální JOIN, jen se spojuje ta tabulka sama se sebou
@@ -289,7 +289,7 @@ JOIN table2
   - v podstatě to spojí řádky, které mají stejné ID a jsou tam právě jednou
   - jako INNER JOIN, ale nemusím specifikovat, dle jakého id se mají napojit
 
-  <img src="sql/assets/images/natural_join.png"/>
+  <img src="programovani_software/sql/assets/images/natural_join.png"/>
 
 ## Agregační funkce - AVG, COUNT, MAX, MIN, SUM
 
@@ -495,7 +495,7 @@ ORDER BY
 - UNION slouží ke spojení více SELECT query v jednu
 - pro zanechání duplikátů se používá UNION ALL viz. obrázek
 
-<img src="sql/sql/assets/images/union.png"/>
+<img src="programovani_software/sql/assets/assets/images/union.png"/>
 
 - rozdílem od JOIN, je že JOIN spojuje sloupečky, zatímco UNION spojuje řádky
 
@@ -503,13 +503,13 @@ ORDER BY
 
 - slouží k zobrazení „jen“ shodných hodnot ze SELECT query viz. obrázek
 
-<img src="sql/assets/images/intersect.png"/>
+<img src="programovani_software/sql/assets/images/intersect.png"/>
 
 ## MINUS
 
 - slouží k "odečtení" jedné sady výsledků od druhé
 
-<img src="sql/assets/images/minus.png"/>
+<img src="programovani_software/sql/assets/images/minus.png"/>
 
 ```sql
 SELECT 
@@ -954,7 +954,7 @@ CREATE TABLE table_name(
 
 - existují různé druhy data (data_type)
 
-<img src="sql/assets/images/data_types.png"/>
+<img src="programovani_software/sql/assets/images/data_types.png"/>
 
 ```sql
 CREATE TABLE trainings (
